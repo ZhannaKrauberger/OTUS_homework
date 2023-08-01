@@ -23,3 +23,6 @@ class Plane(Vehicle):
         cargo2 = self.cargo
         self.cargo = 0
         return cargo2
+
+
+test
