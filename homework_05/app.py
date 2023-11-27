@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
-from werkzeug.exceptions import BadRequest
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
