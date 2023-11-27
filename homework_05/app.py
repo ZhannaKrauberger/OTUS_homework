@@ -4,17 +4,18 @@ from werkzeug.exceptions import BadRequest
 app = Flask(__name__)
 
 
-@app.get("/")
+@app.get("/", endpoint="home")
 def get_index():
     return render_template("index.html")
 
 
-@app.route("/about_me/", endpoint="about_me")
-def get_my_name():
-    name = request.form.get("my-name")
-    print(name)
-
-
+@app.route("/about_me/", methods={"GET", "POST"}, endpoint="about_me")
+def create_my_name():
+    if request.method == 'POST':
+        name = request.form['name']
+        greeting_message = f"Hi, {name.title()} :)"
+        return render_template("about_me.html", message=greeting_message)
+    return render_template("about_me.html")
 
 
 @app.get("/about/", endpoint="about")
