@@ -7,16 +7,22 @@
 {% block body %}
   <div class="container">
     <h2>This is the welcome page</h2>
+    <form
 
-    {% if message %}
-      <p>{{ message }}</p>
-    {% endif %}
+      class="my-lg-5 row row-cols-lg-1">
+        <b class="font-weight-bold display-4 animate__animated animate__jackInTheBox">
+        {% if message %}
+          {{ message }}
+        {% endif %}
+        </b>
 
-    <a
-      href="{{ url_for("home") }}"
-      class="btn btn-primary"
-      >Go back to main page
-    </a>
-
+      </form>
+        <a
+          href="{{ url_for("home") }}"
+          class="btn btn-primary"
+          >Go back to main page
+        </a>
   </div>
+
 {% endblock %}
+
