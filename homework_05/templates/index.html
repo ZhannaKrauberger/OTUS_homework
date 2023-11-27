@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename="css/bootstrap.min.css") }}"
     >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <title>
       {% block title %}
@@ -59,10 +60,10 @@
     {% block body %}
       <div class="container">
         <h2>Please enter your name</h2>
-          <form method="post" class="my-lg-5 row row-cols-lg-0" action="/about_me/">
+          <form method="post" class="my-lg-5 row row-cols-lg-1" action="/about_me/">
             <label class="form-label" for="name" >My name is</label>
             <input id="name" name="name" class="form-control" type="text" placeholder="Leonardo" required="required">
-            <button class="my-2 my-md-2 btn btn-success" type="submit">Create</button>
+            <button class="my-2 my-md-2 btn btn-success" type="submit">Create magic</button>
           </form>
       </div>
     {% endblock %}
