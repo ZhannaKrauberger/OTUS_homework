@@ -59,25 +59,10 @@
     {% block body %}
       <div class="container">
         <h2>Please enter your name</h2>
-          <form method="post" class="my-lg-5 row row-cols-1">
-            <div class="col">
-              <label
-                class="form-label"
-                for="field-name"
-                >My name is
-              </label>
-              <input
-                id="field-name"
-                name="my-name"
-                class="form-control"
-                type="text"
-                placeholder="Leonardo"
-                required="required"
-              >
-            </div>
-            <div class="col-auto">
-              <input class="my-2 my-md-2 btn btn-success" type="submit" value="Create">
-            </div>
+          <form method="post" class="my-lg-5 row row-cols-lg-0" action="/about_me/">
+            <label class="form-label" for="name" >My name is</label>
+            <input id="name" name="name" class="form-control" type="text" placeholder="Leonardo" required="required">
+            <button class="my-2 my-md-2 btn btn-success" type="submit">Create</button>
           </form>
       </div>
     {% endblock %}
