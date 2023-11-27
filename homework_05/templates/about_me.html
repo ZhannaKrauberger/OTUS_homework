@@ -6,6 +6,17 @@
 
 {% block body %}
   <div class="container">
-    <h2>hh</h2>
+    <h2>This is the welcome page</h2>
+
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+
+    <a
+      href="{{ url_for("home") }}"
+      class="btn btn-primary"
+      >Go back to main page
+    </a>
+
   </div>
 {% endblock %}
