@@ -1,9 +1,11 @@
 from os import getenv
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_migrate import Migrate
+from werkzeug.security import generate_password_hash
 
 from models.database import db
+from models.user import User
 
 app = Flask(__name__)
 
@@ -15,6 +17,28 @@ db.init_app(app=app)
 migrate = Migrate(app=app, db=db)
 
 
+@app.route("/sign_up/", methods={"POST", "GET"}, endpoint="sign_up")
+def sign_up():
+    if request.method == "POST":
+        hash_password = generate_password_hash(request.form["password"])
+        user = User(
+            first_name=request.form["firstName"],
+            last_name=request.form["lastName"],
+            username=request.form["username"],
+            email=request.form["email"],
+            password=hash_password,
+        )
+        db.session.add(user)
+        db.session.commit()
+
+    return render_template("sign_up.html")
+
+
+@app.route("/sign_in/")
+def sign_in():
+    return render_template("sign_in.html")
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -23,16 +47,6 @@ def index():
 @app.route("/about/")
 def about():
     return render_template("about.html")
-
-
-@app.route("/sign_in/")
-def sign_in():
-    return render_template("sign_in.html")
-
-
-@app.route("/sign_up/", endpoint="sign_up")
-def sign_up():
-    return render_template("sign_up.html")
 
 
 @app.route("/create/")
