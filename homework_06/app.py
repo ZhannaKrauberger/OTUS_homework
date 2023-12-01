@@ -78,3 +78,8 @@ def support():
         else:
             flash("Error :(")
     return render_template("support.html")
+
+
+@app.errorhandler(code_or_exception=404)
+def page_not_found(error):
+    return render_template("page404.html")
