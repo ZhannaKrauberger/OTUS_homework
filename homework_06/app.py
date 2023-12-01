@@ -1,9 +1,10 @@
 from os import getenv
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash
 
+from models import WishList
 from models.database import db
 from models.user import User
 
@@ -29,6 +30,10 @@ def sign_up():
             password=hash_password,
         )
         db.session.add(user)
+        db.session.flush()
+
+        wishlist = WishList(user_id=user.id)
+        db.session.add(wishlist)
         db.session.commit()
 
     return render_template("sign_up.html")
@@ -64,6 +69,12 @@ def wishlists():
     return render_template("my_wishlist.html")
 
 
-@app.route("/support/")
+@app.route("/support/", methods={"GET", "POST"})
 def support():
+    if request.method == "POST":
+        # TODO: нужны нормальные проверки
+        if len(request.form["email"]) > 2:
+            flash("Message sent :)")
+        else:
+            flash("Error :(")
     return render_template("support.html")
