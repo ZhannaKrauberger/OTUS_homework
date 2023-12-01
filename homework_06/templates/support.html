@@ -5,3 +5,39 @@
   {% endblock %}
 
 {% block name %}Support{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <form action="" method="post">
+      <h1 class="h3 mb-3 fw-normal">Contact Us / Provide Feedback</h1>
+      <p>If you have questions or want to provide feedback, please contact us below.</p>
+      <div class="row g-3">
+
+        <div class="col-sm-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+
+        <div class="col-sm-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" name="email">
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <label for="body" class="form-label">Your message</label>
+          <input type="text" class="form-control" id="body" name="body">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary my-md-2"> Send message</button>
+    </form>
+
+      {% for msg in get_flashed_messages() %}
+        <div class="flash alert alert alert-info" role="alert">{{ msg }}</div>
+      {% endfor %}
+  </div>
+
+{% endblock %}
